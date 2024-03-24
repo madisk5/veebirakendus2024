@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <title>Home | Minublogi.com</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="img/ilus.avif" alt="Blogi logo"></a>
+        </div>
+        <nav>
+            <a href="index.html">Kodu</a>
+            <a href="about.html">Minust</a>
+            <a href="contact.html">Kontakt</a>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <h1 class="h1">
+            Postitused
+        </h1>
+        <p>
+            <label for="postitus-select">Vali postitus:</label>
+<select name="postitus" id="postitus-select" onchange="navigateToPost()">
+    <option value=""></option>
+    <option value="postitus.html">Nerja vaated</option>
+    <option value="postitus1.html">Nerja vanalinn</option>
+    <option value="postitus3.html">Söögikohad</option>
+    <option value="postitus4.html">Kuidas sinna saada</option>
+    <option value="postitus5.html">Link Nerja lehele</option>
+</select>
+        </p>
+    
+        <main>
+            <div class="content">
+                <div class="postitus" onclick="window.location.href='postitus.html';">
+                    <img src="img/uus1.jpg" alt="ilus">
+                    <p> Nerja vaated </p>
+                    <p id="kuupaev1"></p>
+                    </div>
+                
+                
+                <div class="postitus" onclick="window.location.href='postitus1.html';">
+                    <img src="img/uus2.jpg" alt="ilus2">
+                    <p> Nerja vanalinn </p>
+                    <p id="kuupaev2"></p>
+                    </div>
+                
+                <div class="postitus" onclick="window.location.href='postitus3.html';">
+                    <img src="img/uus3.jpg" alt="ilus3">
+                    <p> Söögikohad </p>
+                    <p id="kuupaev3"></p>
+                    </div>
+                
+                <div class="postitus" onclick="window.location.href='postitus4.html';">
+                    <img src="img/uus4.jpg" alt="ilus4">
+                    <p> Kuidas sinna saada </p>
+                    <p id="kuupaev4"></p>
+                    </div>
+                
+                <div class="postitus" onclick="window.location.href='postitus5.html';">
+                    <img src="img/uus5.jpg" alt="ilus5">
+                    <p> Link Nerja lehele </p>
+                    <p id="kuupaev5"></p>
+                    </div>
+                
+            </div>
+           
+
+
+        </main>
+        
+
+
+         
+        
+    <footer class="footer">
+        <hr>
+        <p align="center">Õigused kaitstud &copy; 2024 Madis Kalmus ajaveeb</p>
+    </footer>         
+    
+    <script>
+        function pad(number) {
+            return (number < 10 ? '0' : '') + number;
+        }
+
+        function genereeriKuupaevKellaeg(postitusId) {
+            var kuupaev = localStorage.getItem(postitusId);
+            if (!kuupaev) {
+                var tana = new Date();
+                var kuupaevStr = pad(tana.getDate()) + "/" + pad(tana.getMonth() + 1) + "/" + tana.getFullYear();
+                var aegStr = pad(tana.getHours()) + pad(tana.getMinutes());
+                kuupaev = kuupaevStr + aegStr;
+                localStorage.setItem(postitusId, kuupaev);
+            }
+            var kuupaevElement = document.getElementById("kuupaev" + postitusId);
+            kuupaevElement.innerHTML = kuupaev.replace(' kell', '');
+        }
+
+        genereeriKuupaevKellaeg(1);
+        genereeriKuupaevKellaeg(2);
+        genereeriKuupaevKellaeg(3);
+        genereeriKuupaevKellaeg(4);
+        genereeriKuupaevKellaeg(5);
+    </script> 
+    <script>
+        function navigateToPost() {
+            var selectElement = document.getElementById("postitus-select");
+            var selectedValue = selectElement.value;
+            
+            if (selectedValue) {
+                window.location.href = selectedValue;
+            }
+        }
+    </script>
+
+
+</body>
+</html>
